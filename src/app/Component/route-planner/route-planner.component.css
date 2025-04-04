@@ -1,0 +1,29 @@
+.route-planner {
+  max-width: 600px;
+  margin: auto;
+
+  input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+  }
+
+  button {
+    margin: 5px;
+    padding: 8px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background: #0056b3;
+    }
+  }
+
+  .map-container {
+    width: 100%;
+    height: 400px;
+    margin-top: 10px;
+  }
+}

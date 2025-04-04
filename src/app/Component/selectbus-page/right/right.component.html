@@ -1,0 +1,21 @@
+<div class="right-container">
+  <div class="bus-list" *ngIf="routes && routes.length > 0">
+    <app-bus-box
+      *ngFor="let route of routes"
+      [routedetails]="route"
+      [busid]="route.busId"
+      [operatorname]="route.operatorName"
+      [reschedulable]="route.isReschedulable"
+      [livetracking]="route.hasLiveTracking"
+      [filledseats]="seats[route.busId] || []"
+      [rating]="route.ratings || []"
+      [carbonFootprint]="route.carbonFootprint"
+      [isEcoFriendly]="route.isEcoFriendly"
+      >
+    </app-bus-box>
+  </div>
+
+  <div class="no-buses" *ngIf="!routes || routes.length === 0">
+    No buses available for this route
+  </div>
+</div>

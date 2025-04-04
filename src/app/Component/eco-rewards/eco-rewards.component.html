@@ -1,0 +1,42 @@
+<div class="eco-rewards-container">
+  <h2>Eco-Friendly Travel Rewards</h2>
+  
+  <div class="eco-points-summary">
+    <div class="eco-points-badge">
+      <i class="material-icons">eco</i>
+      <span class="points-value">{{userEcoPoints}}</span>
+    </div>
+    <p class="eco-points-text">Your Eco Points</p>
+    <p class="eco-points-description">
+      Earn eco-points by choosing eco-friendly travel options. 
+      Redeem your points for exclusive rewards and discounts!
+    </p>
+  </div>
+  
+  <div class="rewards-grid">
+    <div class="reward-card" *ngFor="let reward of ecoRewards" 
+         [ngClass]="{'redeemed': isRewardRedeemed(reward.id)}">
+      <div class="reward-header">
+        <h3>{{reward.name}}</h3>
+        <span class="points-cost">{{reward.pointsRequired}} pts</span>
+      </div>
+      <div class="reward-actions">
+        <button 
+          (click)="redeemReward(reward)" 
+          [disabled]="userEcoPoints < reward.pointsRequired || isRewardRedeemed(reward.id)">
+          {{isRewardRedeemed(reward.id) ? 'Redeemed' : 'Redeem'}}
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="eco-info">
+    <h3>How to earn more points:</h3>
+    <ul>
+      <li>Choose buses with lower carbon emissions</li>
+      <li>Travel during off-peak hours</li>
+      <li>Select non-A/C buses when suitable</li>
+      <li>Book round trips in advance</li>
+    </ul>
+  </div>
+</div>

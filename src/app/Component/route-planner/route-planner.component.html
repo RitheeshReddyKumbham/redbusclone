@@ -1,0 +1,34 @@
+<div class="route-planner">
+  <form [formGroup]="routeForm">
+    <div formArrayName="waypoints">
+      <div *ngFor="let waypoint of waypoints.controls; let i = index" [formGroupName]="i">
+        <input formControlName="address" placeholder="Enter location">
+        
+        <!-- Show 'Remove' button only if it's not the first or last waypoint -->
+        <button *ngIf="i > 0 && i < waypoints.length - 1" (click)="removeWaypoint(i)">
+          Remove
+        </button>
+        
+        <ul *ngIf="waypoint.get('searchResults')?.value?.length">
+          <li *ngFor="let result of waypoint.get('searchResults')?.value" (click)="selectLocation(i, result)">
+            {{ result.address }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button type="button" (click)="addWaypoint()">Add Waypoint</button>
+    <button type="button" (click)="calculateRoute()">Calculate Route</button>
+  </form>
+
+  <div #mapContainer class="map-container"></div>
+
+  <div *ngIf="routeInfo">
+    <p>Distance: {{ routeInfo?.distance }}</p>
+    <p>Duration: {{ routeInfo?.duration }}</p>
+  
+    <div *ngFor="let waypoint of waypoints.controls; let i = index">
+      <p>Waypoint {{ i + 1 }}: {{ waypoint.value.address }}</p>
+    </div>
+  </div>
+  
+</div>

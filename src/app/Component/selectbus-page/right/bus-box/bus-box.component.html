@@ -1,0 +1,53 @@
+<div class="bus-box-container">
+  <div class="busBoxSection11">
+    <div class="busBoxSection111">
+      <div>{{ operatorname }}</div>
+      <div>{{ bustypename }}</div>
+    </div>
+    <div class="busBoxSection112" *ngIf="avgrating > 0">
+      <div>{{ avgrating | number: '1.1-1' }}</div>
+      <div>{{ totalreview }} Reviews</div>
+    </div>
+  </div>
+
+  <div class="busBoxSection12">
+    <div *ngIf="reschedulable === 1">
+      <img src="assets/images/reschedulable.svg" alt="reschedulable">
+      <span>Reschedulable</span>
+    </div>
+    <div *ngIf="livetracking === 1">
+      <img src="assets/images/livetracking.svg" alt="live tracking">
+      <span>Live Tracking</span>
+    </div>
+  </div>
+
+  <div class="busBoxSection13">
+    <div>{{ getFormattedDepartureTime() }} - {{ getFormattedArrivalTime() }}</div>
+  </div>
+
+  <div class="busBoxSection14" *ngIf="isEcoFriendly">
+    <div>
+      <img src="assets/images/eco-friendly.svg" alt="eco friendly">
+      <span>Eco-Friendly Bus</span>
+    </div>
+    <div>Carbon Footprint: {{ carbonFootprint }}kg CO2</div>
+    <div>Eco Points: {{ ecoPoints }}</div>
+  </div>
+
+  <div class="busBoxSection15">
+    <div>{{ getAvailableSeats() }}</div>
+    <div>Seats Available</div>
+  </div>
+
+  <div class="busBoxSection16">
+    <div>Starting from</div>
+    <div>₹ {{ seatprice | number: '1.2-2' }}</div>
+  </div>
+
+  <!-- Bottom Tab Component -->
+  <app-bottom-tab
+  [busid]='busid' [filledseats]="filledseats" [routedetials]="routedetails"
+  [busarrivaltime]="busarrivaltime" [busdeparturetime]="busdeparturetime"
+  [operatorname]="operatorname">
+  </app-bottom-tab>
+</div>

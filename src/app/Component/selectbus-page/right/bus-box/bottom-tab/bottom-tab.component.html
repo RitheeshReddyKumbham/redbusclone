@@ -1,0 +1,24 @@
+<div class="bottom-tab-container">
+  <div class="tab-info">
+    <!-- Bus ID, Filled Seats, and Seat Price -->
+    <div>Bus ID: {{ busid }}</div>
+    <div>Seats Filled: {{ filledseats.length }} / 40</div>
+    <div>Seat Price: ₹{{ seatprice | number: '1.2-2' }}</div>
+  </div>
+
+  <div class="tab-routedetails">
+    <!-- Route Details: Duration, Arrival Time, Source, Destination -->
+    <div>Duration: {{ routedetails?.duration }} hours</div>
+    <div>Arrival Time: {{ routedetails?.arrivalTime | date: 'shortTime' }}</div>
+    <div>Source: {{ routedetails?.source || 'Not Available' }}</div>
+    <div>Destination: {{ routedetails?.destination || 'Not Available' }}</div>
+  </div>
+
+  <div class="tab-footer">
+    <!-- Footer: Departure Time, Bus Type, Operator, Eco Points -->
+    <div>Departure Time: {{ departuretime | date: 'shortTime' }}</div>
+    <div>Bus Type: {{ bustypename }}</div>
+    <div>Operator: {{ operatorname }}</div>
+    <div>Eco Points: {{ ecoPoints }}</div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<!-- src/app/Component/notification-preferences/notification-preferences.component.html -->
+<div class="preferences-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Notification Preferences</mat-card-title>
+        <mat-card-subtitle>Choose how you want to receive updates</mat-card-subtitle>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <form [formGroup]="preferencesForm" (ngSubmit)="savePreferences()">
+          <div class="preferences-options">
+            <mat-slide-toggle formControlName="email">
+              Email Notifications
+            </mat-slide-toggle>
+  
+            <mat-slide-toggle formControlName="sms">
+              SMS Notifications
+            </mat-slide-toggle>
+  
+            <mat-slide-toggle formControlName="push">
+              Push Notifications
+            </mat-slide-toggle>
+          </div>
+  
+          <div class="action-buttons">
+            <button mat-raised-button color="primary" type="submit">
+              Save Preferences
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

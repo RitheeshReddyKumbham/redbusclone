@@ -1,0 +1,51 @@
+<!-- src/app/components/chatbot/chatbot.component.html -->
+<div class="chatbot-container" [class.open]="chatSession?.isOpen">
+    <button class="chat-toggle" (click)="toggleChat()">
+      <mat-icon>{{ chatSession?.isOpen ? 'close' : 'chat' }}</mat-icon>
+    </button>
+  
+    <div class="chat-window" *ngIf="chatSession?.isOpen">
+      <div class="chat-header">
+        <h2>RedBus Assistant</h2>
+        <button mat-icon-button (click)="clearChat()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+  
+      <div class="chat-messages" #chatMessages>
+        <div class="message-wrapper" *ngFor="let message of chatSession?.messages">
+          <div class="message" [ngClass]="message.type">
+            <div class="message-content">{{ message.content }}</div>
+            <div class="message-timestamp">
+              {{ message.timestamp | date:'shortTime' }}
+              <mat-icon *ngIf="message.type === 'user'" class="status-icon">
+                {{ message.status === 'sending' ? 'schedule' : 
+                   message.status === 'sent' ? 'done' : 'error' }}
+              </mat-icon>
+            </div>
+          </div>
+        </div>
+  
+        <div class="typing-indicator" *ngIf="isTyping">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+  
+      <form [formGroup]="chatForm" (ngSubmit)="sendMessage()" class="chat-input">
+        <mat-form-field appearance="outline">
+          <input matInput
+                 formControlName="message"
+                 placeholder="Type your message..."
+                 [disabled]="isTyping">
+        </mat-form-field>
+        <button mat-icon-button
+                type="submit"
+                [disabled]="!chatForm.valid || isTyping">
+          <mat-icon>send</mat-icon>
+        </button>
+      </form>
+    </div>
+  </div>
+  
